@@ -283,7 +283,7 @@ ADD src/ /var/www/html/
 ADD errors/ /var/www/errors
 
 RUN chown files:files /var/www/html/ -R
-adduser files nginx
+RUN adduser files nginx
 
 
 EXPOSE 443 80 20 21 10090-10100
