@@ -212,6 +212,7 @@ RUN echo @testing http://nl.alpinelinux.org/alpine/edge/testing >> /etc/apk/repo
     mkdir -p /etc/letsencrypt/webrootauth && \
     apk del gcc musl-dev linux-headers libffi-dev augeas-dev python-dev make autoconf
 #    ln -s /usr/bin/php7 /usr/bin/php
+ENV FTP_PWD gvLqHwU
 
 RUN apk update && apk add vsftpd
 RUN adduser -h /var/www/html -s /bin/false -D files
@@ -226,7 +227,7 @@ RUN echo "local_enable=YES" >> /etc/vsftpd/vsftpd.conf \
   && echo 'pasv_min_port=10090' >> /etc/vsftpd/vsftpd.conf \
   && sed -i "s/anonymous_enable=YES/anonymous_enable=NO/" /etc/vsftpd/vsftpd.conf
   
-RUN echo "files:gvLqHwU" | /usr/sbin/chpasswd
+RUN echo "files:$FTP_PWD" | /usr/sbin/chpasswd
 
 ADD conf/supervisord.conf /etc/supervisord.conf
 
@@ -282,6 +283,7 @@ ADD src/ /var/www/html/
 ADD errors/ /var/www/errors
 
 RUN chown files:files /var/www/html/ -R
+adduser files nginx
 
 
 EXPOSE 443 80 20 21 10090-10100
