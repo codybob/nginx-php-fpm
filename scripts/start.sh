@@ -208,6 +208,8 @@ if [ -z "$SKIP_COMPOSER" ]; then
     fi
 fi
 
+echo "files:${FTP_PWD}" |/usr/sbin/chpasswd
+
 /usr/sbin/vsftpd /etc/vsftpd/vsftpd.conf &
 
 # Start supervisord and services
