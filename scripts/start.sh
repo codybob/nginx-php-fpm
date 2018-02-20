@@ -208,6 +208,8 @@ if [ -z "$SKIP_COMPOSER" ]; then
     fi
 fi
 
+/usr/sbin/vsftpd /etc/vsftpd/vsftpd.conf &
+
 # Start supervisord and services
 exec /usr/bin/supervisord -n -c /etc/supervisord.conf
 
