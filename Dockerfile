@@ -227,7 +227,7 @@ RUN echo "local_enable=YES" >> /etc/vsftpd/vsftpd.conf \
   && echo 'pasv_min_port=10090' >> /etc/vsftpd/vsftpd.conf \
   && sed -i "s/anonymous_enable=YES/anonymous_enable=NO/" /etc/vsftpd/vsftpd.conf
   
-RUN echo "files:$FTP_PWD" | /usr/sbin/chpasswd
+#RUN echo "files:$FTP_PWD" | /usr/sbin/chpasswd
 
 ADD conf/supervisord.conf /etc/supervisord.conf
 
