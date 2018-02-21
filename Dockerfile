@@ -284,7 +284,7 @@ ADD errors/ /var/www/errors
 
 RUN chown files:files /var/www/html/ -R
 RUN adduser files nginx
-
+RUN chmod -R g+rw /var/www/html
 
 EXPOSE 443 80 20 21 10090-10100
 
